@@ -1,5 +1,9 @@
 #!/bin/bash
 
+while ! mariadb -hmariadb -u$SQL_USER -p$SQL_PASSWORD $SQL_DATABASE --silent 2> /dev/null; do
+    sleep 1;
+done
+
 if [ -f "/var/www/wordpress/wp-config.php" ]; then
     echo "WordPress is already installed in this directory."
     exec "$@"
@@ -34,6 +38,7 @@ wp core install --allow-root --url=${WP_URL} --title=${WP_TITLE} --admin_user=${
 
 echo "Creating users..."
 # Add more user creation commands as needed
-wp user create ${WP_USER} ${WP_USER_EMAIL} --role=administrator --user_pass=${WP_USER_PASSWD} --path=/var/www/wordpress --allow-root
+wp user create ${WP_USER} ${WP_USER_EMAIL} --role=editor --user_pass=${WP_USER_PASSWD} --path=/var/www/wordpress --allow-root
+# wp user create ${WP_USER} ${WP_USER_EMAIL} --role=editor --user_pass=${WP_USER_PASSWD} --path=/var/www/wordpress --allow-root
 
 exec "$@"

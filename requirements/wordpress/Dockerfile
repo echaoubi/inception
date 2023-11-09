@@ -13,7 +13,7 @@ RUN apt update && apt install -f -y \
 
 EXPOSE 9000
 
-COPY ./wordpressscript.sh /wordpressscript.sh 
+COPY ./wordpressscript.sh /wordpressscript.sh  
 
 ENTRYPOINT ["sh", "/wordpressscript.sh"]
 

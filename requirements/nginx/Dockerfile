@@ -13,7 +13,7 @@ COPY nginx.conf /etc/nginx/http.d/default.conf
 # RUN mkdir -p /var/www/html
 # RUN chmod 755 /var/www/wordpress
 # RUN chown -R www-data:www-data /var/www/html
-COPY index.html /var/www/
+# COPY index.html /var/www/
 
 
 EXPOSE 443
