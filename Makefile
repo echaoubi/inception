@@ -12,3 +12,9 @@ burn:
 
 clean:
 	sudo rm -rf /Users/aechaoub/data/*/*
+
+re : stop rm run
+
+
+reset:
+	sudo rm -rf /Users/aechaoub/data/*/*

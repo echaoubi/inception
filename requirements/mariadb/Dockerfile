@@ -1,19 +1,12 @@
-# Use debian:buster as the base image
-FROM debian:buster
+FROM alpine:3.13
 
-# Update and upgrade packages
-RUN apt-get update -y && apt-get upgrade -y
+RUN	apk update && apk upgrade && apk add --no-cache \
+        mariadb \
+        mariadb-client
 
-# Install MariaDB server
-RUN apt-get install -y mariadb-server
+# COPY conf/50-server.cnf /etc/mysql/mariadb.conf.d/50-server.cnf
 
-# Copy the custom MariaDB configuration
-COPY conf/50-server.cnf /etc/mysql/mariadb.conf.d/50-server.cnf
 
-# Copy the initialization script
-COPY mariascript.sh /mariascript.sh
-RUN chmod +x /mariascript.sh
+COPY mariascript.sh /tmp/configure.sh
 
-# Define the entrypoint
-ENTRYPOINT ["/mariascript.sh"]
-
+ENTRYPOINT ["sh", "/tmp/configure.sh"]

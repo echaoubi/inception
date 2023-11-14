@@ -27,7 +27,7 @@ chown -R www-data:www-data /var/www/wordpress
 cd /var/www/wordpress
 rm -rf /var/www/wordpress/*
 
-wp core download --allow-root
+wp core download --version=6.2.2  --allow-root
 
 echo "Generating WordPress 'wp-config.php'..."
 wp config create --allow-root --dbname=${SQL_DATABASE} --dbuser=${SQL_USER} --dbpass=${SQL_PASSWORD} --dbhost=mariadb:3306 --path='/var/www/wordpress'
