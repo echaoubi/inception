@@ -21,9 +21,6 @@ if [ ! -d "/var/www/wordpress" ]; then
     mkdir -p /var/www/wordpress
 fi
 
-chmod -R 755 /var/www/wordpress
-chown -R www-data:www-data /var/www/wordpress
-
 cd /var/www/wordpress
 rm -rf /var/www/wordpress/*
 
@@ -40,5 +37,8 @@ echo "Creating users..."
 # Add more user creation commands as needed
 wp user create ${WP_USER} ${WP_USER_EMAIL} --role=editor --user_pass=${WP_USER_PASSWD} --path=/var/www/wordpress --allow-root
 # wp user create ${WP_USER} ${WP_USER_EMAIL} --role=editor --user_pass=${WP_USER_PASSWD} --path=/var/www/wordpress --allow-root
+
+chmod -R 755 /var/www/wordpress/
+chown -R www-data:www-data /var/www/wordpress/
 
 exec "$@"
