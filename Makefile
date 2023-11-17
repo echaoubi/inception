@@ -1,20 +1,20 @@
 
+all : up
 
-run:
-	docker-compose up -d --build
+up : 
+	docker-compose -f srcs/docker-compose.yml up -d
 
-stop:
-	docker-compose stop
-rm:
-	docker-compose down -v
-burn:
-	docker system prune -a
+down : 
+	docker-compose -f ./srcs/docker-compose.yml down
+
+stop : 
+	docker-compose -f ./srcs/docker-compose.yml stop
+
+start : 
+	docker-compose -f ./srcs/docker-compose.yml start
 
 clean:
 	sudo rm -rf /Users/aechaoub/data/*/*
 
-re : stop rm run
-
-
-reset:
-	sudo rm -rf /Users/aechaoub/data/*/*
+clear_all:
+	docker system prune -a

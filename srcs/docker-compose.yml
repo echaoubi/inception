@@ -49,7 +49,35 @@ services:
     restart: always
     expose:
       - "9000"
+  ftp:
+    container_name: ftp
+    build: requirements/bonus/ftp
+    depends_on:
+      - wordpress
+    volumes:
+      - wordpress:/var/www/wordpress
+    env_file:
+      - .env
+    ports:
+      - "21:21"
+    networks:
+      - inception
+    restart: always
 
+  admin:
+    container_name: admin
+    build:
+      context: requirements/bonus/adminer
+      dockerfile: Dockerfile
+    depends_on:
+      - mariadb
+    ports:
+      - "8080:8080"
+    networks:
+      - inception
+    restart: always
+
+  
 volumes:
   wordpress:
     driver: local

@@ -16,8 +16,6 @@ if [ ! -d "/var/lib/mysql/mysql" ]; then
 	if [ ! -f "$tfile" ]; then
 		return 1
 	fi
-
-	# https://stackoverflow.com/questions/10299148/mysql-error-1045-28000-access-denied-for-user-billlocalhost-using-passw
 	cat << EOF > $tfile
 USE mysql;
 FLUSH PRIVILEGES;
