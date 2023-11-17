@@ -4,7 +4,6 @@ RUN	apk update && apk upgrade && apk add --no-cache \
         mariadb \
         mariadb-client
 
-# COPY conf/50-server.cnf /etc/mysql/mariadb.conf.d/50-server.cnf
 
 
 COPY mariascript.sh /tmp/configure.sh

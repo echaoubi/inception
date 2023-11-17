@@ -13,8 +13,12 @@ stop :
 start : 
 	docker-compose -f ./srcs/docker-compose.yml start
 
-clean:
+cleanf:
 	sudo rm -rf /Users/aechaoub/data/*/*
 
 clear_all:
 	docker system prune -a
+
+clean:
+	docker stop $$(docker ps -aq)
+	docker rm $$(docker ps -aq)

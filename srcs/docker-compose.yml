@@ -76,6 +76,17 @@ services:
     networks:
       - inception
     restart: always
+  
+  static:
+    container_name: static
+    networks:
+      - inception
+    build:
+      context: requirements/bonus/static
+      dockerfile: Dockerfile
+    ports:
+      - "3030:3030"
+    restart: always
 
   
 volumes:
