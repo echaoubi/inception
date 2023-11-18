@@ -1,7 +1,6 @@
-FROM alpine:latest
+FROM debian:bookworm
 
-RUN apk update && apk add nginx openssl
-
+RUN apt-get update && apt-get install -y nginx openssl
 
 RUN openssl req -newkey rsa:4096 -x509 -sha256 -days 365 -nodes \
         -out /etc/ssl/nginx.pem \
